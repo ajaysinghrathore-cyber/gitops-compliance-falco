@@ -1,0 +1,13 @@
+- rule: Write below binary dir
+  desc: Detection of any unauthorized binary modification at runtime
+  condition: evt.type = write and fd.name startswith /usr/bin
+  output: "CRITICAL: Unauthorized binary modification attempt detected (user=%user.name file=%fd.name)"
+  priority: CRITICAL
+  tags: [compliance, cis-benchmark, k8s-hardened]
+
+- rule: Container breakout attempt
+  desc: Detects any malicious container breakout attempt targeting host root filesystem
+  condition: open_write and fd.name startswith /host
+  output: "CRITICAL: Container breakout threat vector activated (user=%user.name proc=%proc.name)"
+  priority: CRITICAL
+  tags: [compliance, runtime-protection]
