@@ -1,12 +1,26 @@
 # GitOps Compliance Pipeline with Falco
 
-Continuous Runtime Compliance auditing and kernel-level event stream detection using Sysdig Falco.
+A hands-on runtime-security lab using Sysdig Falco to detect suspicious container and filesystem activity.
 
-## 🛡️ Core Compliance Features
-1. **Runtime Protection:** Real-time monitoring of sensitive system file write calls (`/usr/bin`, `/host`).
-2. **CIS Benchmarks Audit:** Continuous evaluation of running workloads against critical enterprise compliance metrics.
-3. **Automated Alerts:** Implements declarative threat definitions targeting container-breakout vectors.
+## What this project demonstrates
 
-## 🪓 Project File Structure
-- `falco-rules.yaml`: Declarative Falco threat rules capturing security events and severity triggers at the kernel layer.
--
+- **Runtime detection:** Falco rules for unauthorized writes below protected binary paths.
+- **Container security:** A rule targeting write activity under `/host`, representing a container-breakout detection scenario.
+- **Declarative security:** Detection logic is stored as version-controlled YAML and can be incorporated into a GitOps workflow.
+- **Severity and tagging:** Rules classify critical events and attach security/compliance tags.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `falco-rules.yaml` | Custom Falco detection rules |
+
+## Detection flow
+
+`Container / Host Event → Falco Rule → CRITICAL Alert → Investigation / Response`
+
+> **Scope:** These rules demonstrate detection logic. They do not by themselves provide complete CIS compliance, automatic remediation, or guaranteed container-breakout prevention.
+
+## Skills demonstrated
+
+Falco · Kubernetes security concepts · Runtime Security · Linux events · Container Security · GitOps · DevSecOps
